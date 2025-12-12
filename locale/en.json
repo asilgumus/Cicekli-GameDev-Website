@@ -60,6 +60,8 @@
         "announcements": "Announcements",
         "published": "Published",
         "edit": "Edit",
+        "delete": "Delete",
+        "deleteConfirm": "Are you sure you want to delete \"{title}\"?",
         "eventsTitle": "Events",
         "upcomingEvent": "Upcoming Event",
         "pastEvent": "Past Event"
@@ -93,6 +95,19 @@
         "pastEvents": "Past Events",
         "announcementsTitle": "Announcements",
         "announcementsSubtitle": "Stay updated with the latest news from the community."
+    },
+    "about": {
+        "title": "About Çiçekli Game Dev",
+        "subtitle": "We are a group of passionate game developers, designers, and artists building the future of gaming.",
+        "missionTitle": "Our Mission",
+        "missionPara1": "Founded in 2025, Çiçekli Game Dev began when two friends joined a game jam. Today, it has grown into a vibrant and dedicated community focused on mastering the craft of game development.",
+        "missionPara2": "We believe in learning by doing. That’s why we organize weekly lessons, monthly workshops, and game jams. Our goal is to provide a safe and supportive environment where members can experiment, fail, and succeed together.",
+        "valuesTitle": "Our Values",
+        "value1Title": "Community First",
+        "value1Desc": "We support each other. No question is too simple, no mistake too complex. We grow together.",
+        "value2Title": "Mastery",
+        "value2Desc": "We take pride in our code and art. We strive for excellence in every pixel and every line of code.",
+        "value3Title": "Creativity",
+        "value3Desc": "We encourage exploring new ideas and experimenting. Growth happens when we dare to think differently."
     }
 }
-

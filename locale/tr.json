@@ -60,6 +60,8 @@
         "announcements": "Duyurular",
         "published": "Yayında",
         "edit": "Düzenle",
+        "delete": "Sil",
+        "deleteConfirm": "\"{title}\" silinsin mi?",
         "eventsTitle": "Etkinlikler",
         "upcomingEvent": "Yaklaşan Etkinlik",
         "pastEvent": "Geçmiş Etkinlik"
@@ -93,5 +95,19 @@
         "pastEvents": "Geçmiş Etkinlikler",
         "announcementsTitle": "Duyurular",
         "announcementsSubtitle": "Topluluktan en son haberlerle güncel kalın."
+    },
+    "about": {
+        "title": "Çiçekli Game Dev Hakkında",
+        "subtitle": "Biz, oyunun geleceğini inşa eden tutkulu oyun geliştiricileri, tasarımcıları ve sanatçılarından oluşan bir grubuz.",
+        "missionTitle": "Misyonumuz",
+        "missionPara1": "2025 yılında kurulan Çiçekli Game Dev, iki arkadaşın bir game jam’e katılmasıyla ortaya çıktı. Bugün ise oyun geliştirme zanaatında ustalaşmayı hedefleyen, canlı ve kendine özgü bir topluluğa dönüşmüş durumda.",
+        "missionPara2": "Yaparak öğrenmeye inanıyoruz. Bu nedenle haftalık dersler, aylık workshop’lar ve game jam’ler düzenliyoruz. Amacımız; üyelerin deneyebileceği, hata yapabileceği ve birlikte üretebileceği güvenli ve destekleyici bir ortam sunmaktır.",
+        "valuesTitle": "Değerlerimiz",
+        "value1Title": "Önce Topluluk",
+        "value1Desc": "Birbirimizi destekliyoruz. Hiçbir soru çok basit, hiçbir hata çok karmaşık değildir. Birlikte büyüyoruz.",
+        "value2Title": "Ustalık",
+        "value2Desc": "Kodumuzla ve sanatımızla gurur duyuyoruz. Her pikselde ve her kod satırında mükemmellik için çabalıyoruz.",
+        "value3Title": "Yaratıcılık",
+        "value3Desc": "Yeni fikirleri keşfetmeyi ve denemeyi teşvik ediyoruz. Gelişim, farklı düşünmeye cesaret edildiğinde ortaya çıkar."
     }
 }

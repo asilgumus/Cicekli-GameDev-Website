@@ -3,12 +3,35 @@
 import React from 'react';
 import styles from './page.module.css';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import Button from '@/components/Button';
-import { Plus, FileText, Megaphone, Edit, CalendarDays } from 'lucide-react';
+import { Plus, FileText, Megaphone, Edit, CalendarDays, Trash2 } from 'lucide-react';
 import { useTranslation } from '@/hooks/useTranslation';
 
 export default function AdminDashboardClient({ blogPosts, announcements, upcomingEvents, pastEvents }) {
     const { t } = useTranslation();
+    const router = useRouter();
+
+    const handleDelete = async (id, title) => {
+        if (!confirm(t('admin.deleteConfirm').replace('{title}', title))) {
+            return;
+        }
+
+        try {
+            const response = await fetch(`/api/posts?id=${id}`, {
+                method: 'DELETE',
+            });
+
+            if (response.ok) {
+                router.refresh();
+            } else {
+                alert(t('common.error'));
+            }
+        } catch (error) {
+            console.error('Error deleting post:', error);
+            alert(t('common.error'));
+        }
+    };
 
     return (
         <div className={styles.container}>
@@ -52,6 +75,14 @@ export default function AdminDashboardClient({ blogPosts, announcements, upcomin
                                         {t('admin.edit')}
                                     </Button>
                                 </Link>
+                                <Button
+                                    variant="danger"
+                                    icon={Trash2}
+                                    className={styles.deleteButton}
+                                    onClick={() => handleDelete(post.id, post.title)}
+                                >
+                                    {t('admin.delete')}
+                                </Button>
                             </div>
                         </div>
                     ))}
@@ -92,6 +123,14 @@ export default function AdminDashboardClient({ blogPosts, announcements, upcomin
                                         {t('admin.edit')}
                                     </Button>
                                 </Link>
+                                <Button
+                                    variant="danger"
+                                    icon={Trash2}
+                                    className={styles.deleteButton}
+                                    onClick={() => handleDelete(post.id, post.title)}
+                                >
+                                    {t('admin.delete')}
+                                </Button>
                             </div>
                         </div>
                     ))}
@@ -132,6 +171,14 @@ export default function AdminDashboardClient({ blogPosts, announcements, upcomin
                                         {t('admin.edit')}
                                     </Button>
                                 </Link>
+                                <Button
+                                    variant="danger"
+                                    icon={Trash2}
+                                    className={styles.deleteButton}
+                                    onClick={() => handleDelete(event.id, event.title)}
+                                >
+                                    {t('admin.delete')}
+                                </Button>
                             </div>
                         </div>
                     ))}
@@ -164,6 +211,14 @@ export default function AdminDashboardClient({ blogPosts, announcements, upcomin
                                         {t('admin.edit')}
                                     </Button>
                                 </Link>
+                                <Button
+                                    variant="danger"
+                                    icon={Trash2}
+                                    className={styles.deleteButton}
+                                    onClick={() => handleDelete(event.id, event.title)}
+                                >
+                                    {t('admin.delete')}
+                                </Button>
                             </div>
                         </div>
                     ))}

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { savePost, updatePost, getPostById } from '@/lib/data';
+import { savePost, updatePost, getPostById, deletePost } from '@/lib/data';
 
 export async function POST(request) {
     try {
@@ -80,6 +80,26 @@ export async function GET(request) {
         return NextResponse.json({ error: 'ID parameter required' }, { status: 400 });
     } catch (error) {
         console.error('Error fetching post:', error);
+        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    }
+}
+
+export async function DELETE(request) {
+    try {
+        const { searchParams } = new URL(request.url);
+        const id = searchParams.get('id');
+
+        if (!id) {
+            return NextResponse.json({ error: 'ID parameter required' }, { status: 400 });
+        }
+
+        const deletedPost = deletePost(id);
+        return NextResponse.json({ success: true, post: deletedPost });
+    } catch (error) {
+        console.error('Error deleting post:', error);
+        if (error.message === 'Post not found') {
+            return NextResponse.json({ error: 'Post not found' }, { status: 404 });
+        }
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
 }

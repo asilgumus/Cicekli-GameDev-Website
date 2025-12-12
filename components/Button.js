@@ -21,7 +21,7 @@ const Button = ({
 };
 
 Button.propTypes = {
-    variant: PropTypes.oneOf(['primary', 'secondary', 'outline']),
+    variant: PropTypes.oneOf(['primary', 'secondary', 'outline', 'danger']),
     icon: PropTypes.elementType,
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
