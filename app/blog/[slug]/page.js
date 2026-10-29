@@ -3,9 +3,11 @@ import styles from './page.module.css';
 import { getPostBySlug } from '@/lib/data';
 import BlogPostClient from './BlogPostClient';
 
+export const dynamic = 'force-dynamic';
+
 export default async function BlogPostPage({ params }) {
     const resolvedParams = await params;
-    const post = getPostBySlug(resolvedParams.slug);
+    const post = await getPostBySlug(resolvedParams.slug);
 
     if (!post) {
         return <div className={styles.container}>Gönderi bulunamadı</div>;

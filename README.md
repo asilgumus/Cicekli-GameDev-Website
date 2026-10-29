@@ -15,7 +15,7 @@ Then open http://localhost:3000. For a production build use `npm run build` and 
 
 ## How content works
 
-There's no database. Everything — posts, events, announcements — lives in a single JSON file, `data/posts.json`. The admin panel reads and writes it through the API routes in `app/api`.
+Posts, events and announcements are stored as one JSON document. In production it lives in a Vercel Blob store (`posts.json` key, seeded from the bundled `data/posts.json` on first read). Locally, with no `BLOB_READ_WRITE_TOKEN`, it reads and writes `data/posts.json` directly. The admin panel edits it through the API routes in `app/api`.
 
 Admin login is at `/login`. Credentials come from `ADMIN_USERNAME` / `ADMIN_PASSWORD`; logging in sets an `auth_token` cookie whose value must match `ADMIN_SESSION_TOKEN`. `middleware.js` (for `/admin` pages) and all admin API routes check that cookie against it. Copy `.env.example` to `.env` and fill all three in, and set the same vars in your host's environment settings for production.
 

@@ -28,7 +28,7 @@ export async function POST(request) {
             imageUrl: body.imageUrl || null,
         };
 
-        savePost(newPost);
+        await savePost(newPost);
 
         return NextResponse.json({ success: true, post: newPost });
     } catch (error) {
@@ -48,7 +48,7 @@ export async function PUT(request) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
         }
 
-        const updatedPost = updatePost(body.id, {
+        const updatedPost = await updatePost(body.id, {
             title: body.title,
             excerpt: body.excerpt,
             content: body.content,
@@ -77,7 +77,7 @@ export async function GET(request) {
         const id = searchParams.get('id');
 
         if (id) {
-            const post = getPostById(id);
+            const post = await getPostById(id);
             if (!post) {
                 return NextResponse.json({ error: 'Post not found' }, { status: 404 });
             }
@@ -102,7 +102,7 @@ export async function DELETE(request) {
             return NextResponse.json({ error: 'ID parameter required' }, { status: 400 });
         }
 
-        const deletedPost = deletePost(id);
+        const deletedPost = await deletePost(id);
         return NextResponse.json({ success: true, post: deletedPost });
     } catch (error) {
         console.error('Error deleting post:', error);

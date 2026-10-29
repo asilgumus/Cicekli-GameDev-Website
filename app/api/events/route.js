@@ -4,7 +4,7 @@ import { isAuthorized, unauthorized } from '@/lib/auth';
 
 export async function GET() {
     try {
-        const events = getEvents();
+        const events = await getEvents();
         return NextResponse.json(events);
     } catch (error) {
         console.error('Error fetching events:', error);
