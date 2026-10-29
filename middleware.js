@@ -7,8 +7,8 @@ export function middleware(request) {
     if (path.startsWith('/admin')) {
         const token = request.cookies.get('auth_token')?.value;
 
-        // If no token exists, redirect to login
-        if (!token) {
+        // Redirect unless the cookie matches the configured session token
+        if (!token || token !== process.env.ADMIN_SESSION_TOKEN) {
             return NextResponse.redirect(new URL('/login', request.url));
         }
     }

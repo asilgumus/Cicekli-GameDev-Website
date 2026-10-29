@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getEvents } from '@/lib/data';
+import { isAuthorized, unauthorized } from '@/lib/auth';
 
 export async function GET() {
     try {
@@ -12,6 +13,8 @@ export async function GET() {
 }
 
 export async function POST(request) {
+    if (!isAuthorized(request)) return unauthorized();
+
     try {
         const body = await request.json();
 

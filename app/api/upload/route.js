@@ -2,8 +2,11 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 import { writeFile } from 'fs/promises';
+import { isAuthorized, unauthorized } from '@/lib/auth';
 
 export async function POST(request) {
+    if (!isAuthorized(request)) return unauthorized();
+
     try {
         const formData = await request.formData();
         const file = formData.get('file');
@@ -23,7 +26,9 @@ export async function POST(request) {
             fs.mkdirSync(uploadDir, { recursive: true });
         }
 
-        const safeName = file.name.replace(/\s+/g, '-');
+        // Yol gezinmesini engelle: sadece dosya adını al, özel karakterleri temizle
+        const baseName = file.name.split('/').pop().split('\\').pop();
+        const safeName = baseName.replace(/[^a-zA-Z0-9._-]+/g, '-') || 'upload';
         const fileName = `${Date.now()}-${safeName}`;
         const filePath = path.join(uploadDir, fileName);
 

@@ -1,7 +1,10 @@
 import { NextResponse } from 'next/server';
 import { savePost, updatePost, getPostById, deletePost } from '@/lib/data';
+import { isAuthorized, unauthorized } from '@/lib/auth';
 
 export async function POST(request) {
+    if (!isAuthorized(request)) return unauthorized();
+
     try {
         const body = await request.json();
 
@@ -35,6 +38,8 @@ export async function POST(request) {
 }
 
 export async function PUT(request) {
+    if (!isAuthorized(request)) return unauthorized();
+
     try {
         const body = await request.json();
 
@@ -65,6 +70,8 @@ export async function PUT(request) {
 }
 
 export async function GET(request) {
+    if (!isAuthorized(request)) return unauthorized();
+
     try {
         const { searchParams } = new URL(request.url);
         const id = searchParams.get('id');
@@ -85,6 +92,8 @@ export async function GET(request) {
 }
 
 export async function DELETE(request) {
+    if (!isAuthorized(request)) return unauthorized();
+
     try {
         const { searchParams } = new URL(request.url);
         const id = searchParams.get('id');

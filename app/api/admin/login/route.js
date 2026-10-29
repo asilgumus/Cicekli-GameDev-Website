@@ -5,13 +5,22 @@ export async function POST(request) {
         const body = await request.json();
         const { username, password } = body;
 
-        // Mock authentication
-        // In a real app, you would check against a database and hash passwords
-        if (username === 'admin' && password === 'password123') {
+        const adminUsername = process.env.ADMIN_USERNAME;
+        const adminPassword = process.env.ADMIN_PASSWORD;
+        const sessionToken = process.env.ADMIN_SESSION_TOKEN;
+
+        if (!adminUsername || !adminPassword || !sessionToken) {
+            return NextResponse.json(
+                { error: 'Auth not configured: set ADMIN_USERNAME, ADMIN_PASSWORD and ADMIN_SESSION_TOKEN' },
+                { status: 500 }
+            );
+        }
+
+        if (username === adminUsername && password === adminPassword) {
             const response = NextResponse.json({ success: true });
 
             // Secure cookie settings
-            response.cookies.set('auth_token', 'mock_token_secure_123', {
+            response.cookies.set('auth_token', sessionToken, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
                 sameSite: 'strict',
